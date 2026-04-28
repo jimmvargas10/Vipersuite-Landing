@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viper Suite — NinjaTrader 8 Productivity Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #00ffff;
+  --cyan-dim: #00cccc;
+  --cyan-dark: #003333;
+  --bg: #080c0c;
+  --bg2: #0d1414;
+  --bg3: #111b1b;
+  --text: #eaeaea;
+  --text-dim: #888;
+  --green: #00ff88;
+  --red: #ff4444;
+  --amber: #ffaa00;
+  --border: rgba(0,255,255,0.15);
+  --border-bright: rgba(0,255,255,0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* LANG TOGGLE */
+.lang-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 32px;
+  background: rgba(8,12,12,0.95);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.lang-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.lang-btn {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Inter', sans-serif;
+}
+
+.lang-btn.active {
+  background: var(--cyan-dark);
+  color: var(--cyan);
+  border: 1px solid var(--border-bright);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 32px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0,255,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,255,136,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.grid-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--border-bright);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cyan);
+  background: rgba(0,255,255,0.05);
+  margin-bottom: 28px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--cyan) 0%, #ffffff 50%, var(--cyan-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(12px, 2vw, 18px);
+  font-weight: 400;
+  color: var(--cyan-dim);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.hero-desc {
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300;
+  color: var(--text-dim);
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.hero-desc strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary:hover {
+  background: #00e5e5;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--cyan);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  border: 1px solid var(--border-bright);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-secondary:hover {
+  background: rgba(0,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+.trial-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.trial-note span {
+  color: var(--green);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 0;
+}
+
+.stat-item {
+  padding: 28px 48px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  flex: 1;
+  min-width: 160px;
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--cyan);
+  display: block;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* FEATURES */
+.section {
+  padding: 100px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.feature-card {
+  background: var(--bg2);
+  padding: 36px 32px;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.feature-card:hover {
+  background: var(--bg3);
+}
+
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  background: rgba(0,255,255,0.08);
+  border: 1px solid var(--border);
+}
+
+.feature-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.feature-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.badge-new {
+  background: rgba(0,255,136,0.1);
+  color: var(--green);
+  border: 1px solid rgba(0,255,136,0.3);
+}
+
+.badge-beta {
+  background: rgba(255,170,0,0.1);
+  color: var(--amber);
+  border: 1px solid rgba(255,170,0,0.3);
+}
+
+/* PRICING */
+.pricing-section {
+  padding: 100px 32px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 60px;
+}
+
+.price-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 28px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.price-card:hover {
+  border-color: var(--border-bright);
+}
+
+.price-card.featured {
+  border-color: var(--cyan);
+  background: linear-gradient(135deg, var(--bg3) 0%, rgba(0,255,255,0.03) 100%);
+}
+
+.price-card.featured::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cyan);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.price-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.price-amount {
+  font-family: 'Orbitron', monospace;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-amount span {
+  font-size: 18px;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.price-period {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+
+.price-features li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-features li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.price-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.price-btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--border-bright);
+}
+
+.price-btn-outline:hover {
+  background: rgba(0,255,255,0.05);
+}
+
+.price-btn-solid {
+  background: var(--cyan);
+  color: #000;
+  border: none;
+  font-weight: 700;
+}
+
+.price-btn-solid:hover {
+  background: #00e5e5;
+}
+
+/* DISCLAIMER */
+.disclaimer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.disclaimer p {
+  font-size: 12px;
+  color: var(--text-dim);
+  max-width: 700px;
+  margin: 0 auto 8px;
+  line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+  padding: 40px 32px;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: gap;
+  gap: 16px;
+}
+
+.footer-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--cyan); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero > * {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.hero > *:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+.hero > *:nth-child(2) { animation-delay: 0.2s; opacity: 0; }
+.hero > *:nth-child(3) { animation-delay: 0.3s; opacity: 0; }
+.hero > *:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
+.hero > *:nth-child(5) { animation-delay: 0.5s; opacity: 0; }
+.hero > *:nth-child(6) { animation-delay: 0.6s; opacity: 0; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .stat-item { padding: 20px 24px; }
+  .section { padding: 60px 20px; }
+  footer { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+/* HIDDEN LANG */
+.lang-es .en { display: none; }
+.lang-en .es { display: none; }
+</style>
+</head>
+<body class="lang-es">
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+
+  <div class="badge">
+    <span class="es">Para NinjaTrader 8 — AddOn Oficial</span>
+    <span class="en">For NinjaTrader 8 — Official AddOn</span>
+  </div>
+
+  <h1 class="hero-logo">VIPER SUITE</h1>
+
+  <p class="hero-subtitle">
+    <span class="es">Suite de Productividad para NinjaTrader 8</span>
+    <span class="en">Productivity Suite for NinjaTrader 8</span>
+  </p>
+
+  <p class="hero-desc">
+    <span class="es">
+      El workspace que NT8 nunca tuvo.<br>
+      <strong>Organiza charts, guarda sesiones, trabaja más rápido.</strong>
+    </span>
+    <span class="en">
+      The workspace NT8 never had.<br>
+      <strong>Organize charts, save sessions, trade faster.</strong>
+    </span>
+  </p>
+
+  <div class="cta-group">
+    <a href="#pricing" class="btn-primary">
+      🐍
+      <span class="es">Probar 15 días gratis</span>
+      <span class="en">Start 15-day free trial</span>
+    </a>
+    <a href="#features" class="btn-secondary">
+      <span class="es">Ver funcionalidades</span>
+      <span class="en">See features</span>
+    </a>
+  </div>
+
+  <p class="trial-note">
+    <span class="es"><span>✓ Sin tarjeta de crédito</span> · Sin configuración compleja · Cancela cuando quieras</span>
+    <span class="en"><span>✓ No credit card required</span> · No complex setup · Cancel anytime</span>
+  </p>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">1.9M</span>
+    <span class="stat-label es">Traders en NT8</span>
+    <span class="stat-label en">NT8 Traders</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">6</span>
+    <span class="stat-label es">Herramientas incluidas</span>
+    <span class="stat-label en">Tools included</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">15</span>
+    <span class="stat-label es">Días de prueba gratis</span>
+    <span class="stat-label en">Free trial days</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">v1.0</span>
+    <span class="stat-label es">Versión actual</span>
+    <span class="stat-label en">Current version</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <p class="section-tag es">Funcionalidades</p>
+  <p class="section-tag en">Features</p>
+
+  <h2 class="section-title">
+    <span class="es">Todo lo que NT8<br>debería tener.</span>
+    <span class="en">Everything NT8<br>should have.</span>
+  </h2>
+
+  <p class="section-desc es">
+    Viper Suite es el primer AddOn que resuelve el caos de gestión de workspace en NinjaTrader 8 de forma nativa.
+  </p>
+  <p class="section-desc en">
+    Viper Suite is the first AddOn that natively solves workspace management chaos in NinjaTrader 8.
+  </p>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-badge badge-new">NEW</div>
+      <div class="feature-icon">⊞</div>
+      <div class="feature-title es">Grid Master</div>
+      <div class="feature-title en">Grid Master</div>
+      <p class="feature-desc es">Organiza todos tus charts en layouts 2x2, 1+3, 3x2, 3x3 con un solo click. Lo que NT8 nunca incluyó.</p>
+      <p class="feature-desc en">Arrange all your charts in 2x2, 1+3, 3x2, 3x3 layouts with a single click. What NT8 never included.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-badge badge-new">NEW</div>
+      <div class="feature-icon">💾</div>
+      <div class="feature-title">Session Manager</div>
+      <p class="feature-desc es">Guarda tu disposición exacta de charts — instrumento, timeframe, posición, monitor. Restaura con un click.</p>
+      <p class="feature-desc en">Save your exact chart layout — instrument, timeframe, position, monitor. Restore with one click.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🗺</div>
+      <div class="feature-title es">MiniMapa HUD</div>
+      <div class="feature-title en">HUD MiniMap</div>
+      <p class="feature-desc es">Visualiza y controla todos tus charts desde un panel flotante. Mueve charts arrastrando en el minimapa.</p>
+      <p class="feature-desc en">Visualize and control all your charts from a floating panel. Move charts by dragging on the minimap.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">👁</div>
+      <div class="feature-title es">Toggle Indicadores</div>
+      <div class="feature-title en">Indicator Toggle</div>
+      <p class="feature-desc es">Oculta o muestra todos los indicadores del chart activo con un solo click. Precio limpio en segundos.</p>
+      <p class="feature-desc en">Hide or show all indicators on the active chart with one click. Clean price action in seconds.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📸</div>
+      <div class="feature-title es">Screenshot Inteligente</div>
+      <div class="feature-title en">Smart Screenshot</div>
+      <p class="feature-desc es">Captura el chart activo con nombre automático: símbolo, timeframe y fecha. Organizado sin esfuerzo.</p>
+      <p class="feature-desc en">Capture the active chart with auto-name: symbol, timeframe and date. Organized effortlessly.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-badge badge-beta">BETA</div>
+      <div class="feature-icon">🖱</div>
+      <div class="feature-title es">Multi-Selección</div>
+      <div class="feature-title en">Multi-Select</div>
+      <p class="feature-desc es">Selecciona múltiples objetos dibujados en el chart a la vez. Muévelos o elimínalos juntos.</p>
+      <p class="feature-desc en">Select multiple drawn objects on the chart at once. Move or delete them together.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <p class="section-tag es" style="text-align:center">Precios</p>
+    <p class="section-tag en" style="text-align:center">Pricing</p>
+
+    <h2 class="section-title" style="text-align:center">
+      <span class="es">Simple y transparente.</span>
+      <span class="en">Simple and transparent.</span>
+    </h2>
+
+    <div class="pricing-grid">
+
+      <!-- TRIAL -->
+      <div class="price-card">
+        <p class="price-name es">Prueba Gratis</p>
+        <p class="price-name en">Free Trial</p>
+        <div class="price-amount">$0</div>
+        <p class="price-period es">15 días · Sin tarjeta</p>
+        <p class="price-period en">15 days · No card needed</p>
+        <ul class="price-features">
+          <li class="es">Acceso completo</li>
+          <li class="en">Full access</li>
+          <li class="es">Sin limitaciones</li>
+          <li class="en">No limitations</li>
+          <li class="es">Soporte por email</li>
+          <li class="en">Email support</li>
+        </ul>
+        <button class="price-btn price-btn-outline es">Empezar gratis</button>
+        <button class="price-btn price-btn-outline en">Start free</button>
+      </div>
+
+      <!-- MONTHLY -->
+      <div class="price-card featured" data-label="MÁS POPULAR · MOST POPULAR">
+        <p class="price-name">Monthly / Mensual</p>
+        <div class="price-amount">$19<span>.99/mo</span></div>
+        <p class="price-period es">Cancela cuando quieras</p>
+        <p class="price-period en">Cancel anytime</p>
+        <ul class="price-features">
+          <li class="es">Todo incluido</li>
+          <li class="en">Everything included</li>
+          <li class="es">Actualizaciones automáticas</li>
+          <li class="en">Automatic updates</li>
+          <li class="es">Soporte prioritario</li>
+          <li class="en">Priority support</li>
+          <li class="es">Nuevas features al lanzar</li>
+          <li class="en">New features on launch</li>
+        </ul>
+        <button class="price-btn price-btn-solid es">Suscribirse</button>
+        <button class="price-btn price-btn-solid en">Subscribe</button>
+      </div>
+
+      <!-- LIFETIME -->
+      <div class="price-card">
+        <p class="price-name">Lifetime</p>
+        <div class="price-amount">$149<span></span></div>
+        <p class="price-period es">Pago único · Para siempre</p>
+        <p class="price-period en">One time · Forever</p>
+        <ul class="price-features">
+          <li class="es">Todo incluido</li>
+          <li class="en">Everything included</li>
+          <li class="es">Todas las actualizaciones</li>
+          <li class="en">All future updates</li>
+          <li class="es">Sin pagos recurrentes</li>
+          <li class="en">No recurring payments</li>
+          <li class="es">Soporte de por vida</li>
+          <li class="en">Lifetime support</li>
+        </ul>
+        <button class="price-btn price-btn-outline es">Comprar ahora</button>
+        <button class="price-btn price-btn-outline en">Buy now</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <p>Futures trading involves substantial risk of loss and is not appropriate for all investors. Past performance is not necessarily indicative of future results.</p>
+  <p class="es">El trading de futuros conlleva un riesgo sustancial de pérdida y no es adecuado para todos los inversores. El rendimiento pasado no es necesariamente indicativo de resultados futuros.</p>
+  <p>Viper Suite is an independent third-party AddOn and is not affiliated with NinjaTrader LLC.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">VIPER SUITE</div>
+  <div class="footer-links">
+    <a href="#features" class="es">Funcionalidades</a>
+    <a href="#features" class="en">Features</a>
+    <a href="#pricing" class="es">Precios</a>
+    <a href="#pricing" class="en">Pricing</a>
+    <a href="mailto:support@vipersuite.com">Support</a>
+  </div>
+  <p class="footer-copy">© 2026 Viper Suite · vipersuite.com</p>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

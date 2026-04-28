@@ -39,12 +39,34 @@ body {
   top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 12px 32px;
+  padding: 10px 32px;
   background: rgba(8,12,12,0.95);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(10px);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0,255,255,0.5));
+}
+
+.nav-logo-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
 }
 
 .lang-toggle {
@@ -614,12 +636,15 @@ footer {
 
 <!-- LANG BAR -->
 <div class="lang-bar">
+  <a href="#" class="nav-logo">
+    <img src="/logovipersuite.webp" alt="Viper Suite">
+    <span class="nav-logo-text">VIPER SUITE</span>
+  </a>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
     <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
   </div>
 </div>
-
 <!-- HERO -->
 <section class="hero">
   <div class="grid-bg"></div>
@@ -628,8 +653,6 @@ footer {
     <span class="es">Para NinjaTrader 8 — AddOn Oficial</span>
     <span class="en">For NinjaTrader 8 — Official AddOn</span>
   </div>
-
-  <img src="/logovipersuite.webp" alt="Viper Suite Logo" class="hero-logo-img">
 
   <h1 class="hero-logo">VIPER SUITE</h1>
 

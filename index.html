@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viper Suite — NinjaTrader 8 Productivity Suite</title>
-<link rel="icon" type="image/webp" href="/logovipersuite.webp">
-<link rel="shortcut icon" type="image/webp" href="/logovipersuite.webp">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -39,34 +37,12 @@ body {
   top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 10px 32px;
+  padding: 12px 32px;
   background: rgba(8,12,12,0.95);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(10px);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.nav-logo img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(0,255,255,0.5));
-}
-
-.nav-logo-text {
-  font-family: 'Orbitron', monospace;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--cyan);
-  letter-spacing: 0.1em;
 }
 
 .lang-toggle {
@@ -169,14 +145,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.hero-logo-img {
-  width: clamp(100px, 14vw, 160px);
-  height: auto;
-  margin-bottom: 24px;
-  display: block;
-  filter: drop-shadow(0 0 24px rgba(0,255,255,0.4));
 }
 
 .hero-subtitle {
@@ -636,15 +604,16 @@ footer {
 
 <!-- LANG BAR -->
 <div class="lang-bar">
-  <a href="#" class="nav-logo">
-    <img src="/logovipersuite.webp" alt="Viper Suite">
-    <span class="nav-logo-text">VIPER SUITE</span>
+  <a href="/downloads/ViperSuite.zip" class="btn-secondary" style="padding:6px 16px;font-size:12px;margin-right:12px;">
+    <span class="es">⬇ Prueba Gratis 15 días</span>
+    <span class="en">⬇ Free Trial 15 days</span>
   </a>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
     <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
   </div>
 </div>
+
 <!-- HERO -->
 <section class="hero">
   <div class="grid-bg"></div>
@@ -786,6 +755,29 @@ footer {
   </div>
 </section>
 
+<!-- VIDEO -->
+<section class="section" id="demo" style="text-align:center;">
+  <p class="section-tag es">Demo</p>
+  <p class="section-tag en">Demo</p>
+
+  <h2 class="section-title">
+    <span class="es">Míralo en acción</span>
+    <span class="en">See it in action</span>
+  </h2>
+
+  <div style="max-width:800px;margin:40px auto 0;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);">
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="Viper Suite Demo"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+        allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <div class="pricing-section" id="pricing">
   <div class="pricing-inner">
@@ -814,8 +806,8 @@ footer {
           <li class="es">Soporte por email</li>
           <li class="en">Email support</li>
         </ul>
-        <button class="price-btn price-btn-outline es">Empezar gratis</button>
-        <button class="price-btn price-btn-outline en">Start free</button>
+        <a href="#" class="price-btn price-btn-outline es" style="display:block;text-align:center;text-decoration:none;">Empezar gratis</a>
+        <a href="#" class="price-btn price-btn-outline en" style="display:block;text-align:center;text-decoration:none;">Start free</a>
       </div>
 
       <!-- MONTHLY -->
@@ -834,8 +826,8 @@ footer {
           <li class="es">Nuevas features al lanzar</li>
           <li class="en">New features on launch</li>
         </ul>
-        <button class="price-btn price-btn-solid es">Suscribirse</button>
-        <button class="price-btn price-btn-solid en">Subscribe</button>
+        <a href="#" class="price-btn price-btn-solid es" style="display:block;text-align:center;text-decoration:none;">Suscribirse</a>
+        <a href="#" class="price-btn price-btn-solid en" style="display:block;text-align:center;text-decoration:none;">Subscribe</a>
       </div>
 
       <!-- LIFETIME -->
@@ -854,8 +846,8 @@ footer {
           <li class="es">Soporte de por vida</li>
           <li class="en">Lifetime support</li>
         </ul>
-        <button class="price-btn price-btn-outline es">Comprar ahora</button>
-        <button class="price-btn price-btn-outline en">Buy now</button>
+        <a href="#" class="price-btn price-btn-outline es" style="display:block;text-align:center;text-decoration:none;">Comprar ahora</a>
+        <a href="#" class="price-btn price-btn-outline en" style="display:block;text-align:center;text-decoration:none;">Buy now</a>
       </div>
 
     </div>

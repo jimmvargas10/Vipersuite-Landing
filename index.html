@@ -696,6 +696,27 @@ footer {
   max-width: fit-content;
 }
 
+.ecosystem-logo-wrap a.ecosystem-logo-link {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 0;
+  border-radius: 8px;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.ecosystem-logo-wrap a.ecosystem-logo-link:hover,
+.ecosystem-logo-wrap a.ecosystem-logo-link:focus-visible {
+  opacity: 0.92;
+  filter: brightness(1.08);
+}
+
+.ecosystem-logo-wrap a.ecosystem-logo-link:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
 .ecosystem-logo-wrap img {
   display: block;
   max-width: min(100%, 320px);
@@ -1036,7 +1057,9 @@ footer {
         <span class="en"><a href="https://ninjatrader.com" target="_blank" rel="noopener noreferrer">NinjaTrader®</a> trading platform</span>
       </h2>
       <div class="ecosystem-logo-wrap">
-        <img src="/img/NinjaTrader_Wordmark_color_RGB.png" alt="NinjaTrader" width="280" height="48">
+        <a href="https://ninjatrader.com" class="ecosystem-logo-link" target="_blank" rel="noopener noreferrer" title="NinjaTrader — ninjatrader.com">
+          <img src="/img/NinjaTrader_Wordmark_color_RGB.png" alt="NinjaTrader" width="280" height="48">
+        </a>
       </div>
       <div class="ecosystem-body">
         <p>
@@ -1051,7 +1074,9 @@ footer {
         <span class="en"><a href="https://kinetick.com/NinjaTrader" target="_blank" rel="noopener noreferrer">Kinetick®</a> market data</span>
       </h2>
       <div class="ecosystem-logo-wrap">
-        <img src="/img/Kinetick_Logo.png" alt="Kinetick" width="200" height="48">
+        <a href="https://kinetick.com/NinjaTrader" class="ecosystem-logo-link" target="_blank" rel="noopener noreferrer" title="Kinetick — kinetick.com/NinjaTrader">
+          <img src="/img/Kinetick_Logo.png" alt="Kinetick" width="200" height="48">
+        </a>
       </div>
       <div class="ecosystem-body">
         <p>

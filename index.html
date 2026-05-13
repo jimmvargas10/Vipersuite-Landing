@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -590,10 +590,9 @@ footer {
   border-top: 1px solid var(--border);
   background: var(--bg2);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: gap;
-  gap: 16px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
 }
 
 .footer-logo {
@@ -622,6 +621,103 @@ footer {
   color: var(--text-dim);
 }
 
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-legal {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.footer-legal p {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.footer-legal p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-legal a {
+  color: var(--cyan);
+  text-decoration: underline;
+}
+
+.footer-legal a:hover {
+  color: var(--cyan-dim);
+}
+
+/* NINJATRADER / KINETICK ECOSYSTEM */
+.ecosystem-section {
+  padding: 60px 32px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+
+.ecosystem-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.ecosystem-block {
+  margin-bottom: 48px;
+}
+
+.ecosystem-block:last-child {
+  margin-bottom: 0;
+}
+
+.ecosystem-block h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+
+.ecosystem-logo-wrap {
+  padding: 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-width: fit-content;
+}
+
+.ecosystem-logo-wrap img {
+  display: block;
+  max-width: min(100%, 320px);
+  height: auto;
+}
+
+.ecosystem-body {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+
+.ecosystem-body a {
+  color: var(--cyan);
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.ecosystem-body a:hover {
+  color: var(--cyan-dim);
+}
+
 /* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
@@ -643,7 +739,8 @@ footer {
 @media (max-width: 600px) {
   .stat-item { padding: 20px 24px; }
   .section { padding: 60px 20px; }
-  footer { flex-direction: column; text-align: center; }
+  footer { text-align: center; }
+  .footer-row { flex-direction: column; justify-content: center; align-items: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; }
 }
 
@@ -652,7 +749,7 @@ footer {
 .lang-en .es { display: none; }
 </style>
 </head>
-<body class="lang-es">
+<body class="lang-en">
 
 <!-- LANG BAR -->
 <div class="lang-bar">
@@ -666,8 +763,8 @@ footer {
       <span class="en">⬇ Free Trial 15 days</span>
     </a>
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
-      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
     </div>
   </div>
 </div>
@@ -920,17 +1017,67 @@ footer {
   <p>Viper Suite is an independent third-party AddOn and is not affiliated with NinjaTrader LLC.</p>
 </div>
 
+<!-- NINJATRADER & KINETICK (ECOSYSTEM) -->
+<section class="ecosystem-section" aria-labelledby="ecosystem-nt-heading">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-block">
+      <h2 id="ecosystem-nt-heading">
+        <span class="es">Nuestra Plataforma Recomendada</span>
+        <span class="en">Our Recommended Trading Platform</span>
+      </h2>
+      <div class="ecosystem-logo-wrap">
+        <img src="/img/NinjaTrader_Wordmark_color_RGB.png" alt="NinjaTrader" width="280" height="48">
+      </div>
+      <div class="ecosystem-body">
+        <p>
+          <span class="es">NinjaTrader® es nuestra plataforma de software de trading número 1 recomendada, preferida por traders de todo el mundo, incluidos nuestros clientes. <a href="https://ninjatrader.com/" target="_blank" rel="noopener noreferrer">Descarga NinjaTrader</a> y obtén acceso GRATUITO inmediato a: datos de futuros en tiempo real, gráficos avanzados, simulador de operaciones, desarrollo de estrategias y backtesting. La <a href="https://ninjatrader.com/GetStarted" target="_blank" rel="noopener noreferrer">plataforma de trading galardonada de NinjaTrader</a> es votada de forma constante como líder del sector por la comunidad de trading. Con miles de aplicaciones y complementos (Apps y Add-Ons) para una personalización prácticamente ilimitada, NinjaTrader la utilizan más de 500.000 traders. <a href="https://ninjatrader.com/" target="_blank" rel="noopener noreferrer">¡Empieza GRATIS!</a></span>
+          <span class="en">NinjaTrader® is our #1 recommended trading software platform preferred by traders worldwide including our clients. <a href="https://ninjatrader.com/" target="_blank" rel="noopener noreferrer">Download NinjaTrader</a> and receive immediate FREE access to: Real-time futures data, Advanced charting, Trade simulator, Strategy development and backtesting. <a href="https://ninjatrader.com/GetStarted" target="_blank" rel="noopener noreferrer">NinjaTrader&apos;s award-winning trading platform</a> is consistently voted an industry leader by the trading community. Featuring 1000s of Apps &amp; Add-Ons for unlimited customization, NinjaTrader is used by over 500,000 traders. <a href="https://ninjatrader.com/" target="_blank" rel="noopener noreferrer">Get Started for FREE!</a></span>
+        </p>
+      </div>
+    </div>
+    <div class="ecosystem-block">
+      <h2>
+        <span class="es">Nuestra Fuente de Datos Recomendada</span>
+        <span class="en">Our Recommended Market Data Feed</span>
+      </h2>
+      <div class="ecosystem-logo-wrap">
+        <img src="/img/Kinetick_Logo.png" alt="Kinetick" width="200" height="48">
+      </div>
+      <div class="ecosystem-body">
+        <p>
+          <span class="es">Kinetick® ofrece datos de mercado confiables, rápidos y rentables (<a href="https://kinetick.com/NinjaTrader" target="_blank" rel="noopener noreferrer">kinetick.com/NinjaTrader</a>) para ayudar a equilibrar las condiciones para traders activos. Comienza con datos históricos de mercado de fin de día GRATIS (<a href="https://kinetick.com/" target="_blank" rel="noopener noreferrer">kinetick.com</a>) directamente a través de la plataforma NinjaTrader. <a href="https://kinetick.com/NinjaTrader" target="_blank" rel="noopener noreferrer">Empieza con datos EOD gratuitos</a>.</span>
+          <span class="en">Kinetick® delivers reliable, fast and cost-effective market data (<a href="https://kinetick.com/NinjaTrader" target="_blank" rel="noopener noreferrer">kinetick.com/NinjaTrader</a>) to help level the playing field for active traders. Get started with FREE end-of-day historical market data (<a href="https://kinetick.com/" target="_blank" rel="noopener noreferrer">kinetick.com</a>) directly through the NinjaTrader platform. <a href="https://kinetick.com/NinjaTrader" target="_blank" rel="noopener noreferrer">Get Started with Free EOD Data</a>.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">VIPER SUITE</div>
-  <div class="footer-links">
-    <a href="#features" class="es">Funcionalidades</a>
-    <a href="#features" class="en">Features</a>
-    <a href="#pricing" class="es">Precios</a>
-    <a href="#pricing" class="en">Pricing</a>
-    <a href="mailto:support@vipersuite.com">Support</a>
+  <div class="footer-row">
+    <div class="footer-logo">VIPER SUITE</div>
+    <div class="footer-links">
+      <a href="#features" class="es">Funcionalidades</a>
+      <a href="#features" class="en">Features</a>
+      <a href="#pricing" class="es">Precios</a>
+      <a href="#pricing" class="en">Pricing</a>
+      <a href="/riesgos.html" class="es">Declaración de Riesgo</a>
+      <a href="/riesgos.html" class="en">Risk Disclosure</a>
+      <a href="mailto:support@vipersuite.com">Support</a>
+    </div>
+    <p class="footer-copy">© 2026 Viper Suite · vipersuite.com</p>
   </div>
-  <p class="footer-copy">© 2026 Viper Suite · vipersuite.com</p>
+  <div class="footer-legal">
+    <p>
+      <span class="es">NinjaTrader® es una marca registrada de NinjaTrader Group, LLC. Ninguna empresa de NinjaTrader tiene afiliación con el propietario, desarrollador o proveedor de los productos o servicios aquí descritos, ni interés, titularidad o relación de ningún tipo con dicho producto o servicio, ni respalda, recomienda ni aprueba ningún producto o servicio de ese tipo.</span>
+      <span class="en">NinjaTrader® is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein, or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</span>
+    </p>
+    <p>
+      <span class="es">El trading de futuros y forex conlleva un riesgo sustancial y no es adecuado para todo inversor. Un inversor podría perder todo o más que la inversión inicial. El capital de riesgo es dinero que puede perderse sin poner en peligro la seguridad financiera o el estilo de vida. Solo debe usarse capital de riesgo para operar y solo quienes dispongan de capital de riesgo suficiente deberían plantearse operar. El rendimiento pasado no es necesariamente indicativo de resultados futuros.</span>
+      <span class="en">Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one&apos;s financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</span>
+    </p>
+  </div>
 </footer>
 
 <script>

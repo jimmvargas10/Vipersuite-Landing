@@ -784,6 +784,29 @@ footer {
   margin-bottom: 12px;
 }
 .legal-block p:last-child { margin-bottom: 0; }
+
+.legal-block ul.legal-list {
+  margin: 0 0 14px 0;
+  padding-left: 1.25em;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.legal-block ul.legal-list li {
+  margin-bottom: 8px;
+}
+
+.legal-cftc-source {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 16px !important;
+}
+
+.legal-cftc-source a {
+  color: var(--cyan);
+  word-break: break-all;
+}
 </style>
 </head>
 <body class="lang-en">
@@ -847,8 +870,8 @@ footer {
       <span class="en">Testimonial Disclosure</span>
     </h2>
     <p>
-      <span class="es">Los testimonios, opiniones o experiencias descritas en este sitio pueden no ser representativos de la experiencia de otros usuarios y no constituyen una promesa de resultados específicos. Cada usuario tiene circunstancias, habilidades y tolerancia al riesgo distintas. Los testimonios pueden basarse en resultados que no son típicos.</span>
-      <span class="en">Testimonials, opinions, or experiences described on this site may not be representative of other users&apos; experiences and do not constitute a promise of specific results. Each user has different circumstances, skills, and risk tolerance. Testimonials may be based on results that are not typical.</span>
+      <span class="es">Los testimonios que aparecen en esta página web pueden no ser representativos de otros clientes o clientes y no es garantía de rendimiento o éxito en el futuro.</span>
+      <span class="en">The testimonials appearing on this website may not be representative of other clients or customers and are not a guarantee of future performance or success.</span>
     </p>
   </section>
 
@@ -857,13 +880,81 @@ footer {
       <span class="es">Declaración sobre Monedas Virtuales</span>
       <span class="en">Virtual Currency Advisory</span>
     </h2>
-    <p>
-      <span class="es">Las monedas virtuales y los mercados relacionados pueden implicar riesgos elevados, incluida volatilidad extrema de precios, falta de protecciones regulatorias comparables con los mercados tradicionales, posibles pérdidas por fraude o fallos operativos, y complejidad tecnológica (por ejemplo, custodia de claves). Antes de participar, debe comprender plenamente estos riesgos y considerar si dichos productos son adecuados para usted.</span>
-      <span class="en">Virtual currencies and related markets can involve elevated risks, including extreme price volatility, fewer regulatory protections than traditional markets, potential losses from fraud or operational failures, and technological complexity (for example, key custody). Before participating, you should fully understand these risks and consider whether such products are appropriate for you.</span>
+    <p class="legal-cftc-source">
+      <span class="es">Texto oficial en inglés del Comunicado al cliente de la CFTC (Commodity Futures Trading Commission), «Understand the Risks of Virtual Currency Trading». La versión en español es traducción informativa del mismo documento.</span>
+      <span class="en">Official English text from the U.S. CFTC Customer Advisory: &quot;Understand the Risks of Virtual Currency Trading.&quot;</span>
+      <a href="https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/understand_risks_of_virtual_currency.html" target="_blank" rel="noopener noreferrer">https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/understand_risks_of_virtual_currency.html</a>
     </p>
     <p>
-      <span class="es">Esta sección resume conceptos frecuentemente destacados en orientación pública de las autoridades de mercados; no constituye asesoramiento legal completo. Consulte las fuentes oficiales para el texto vigente.</span>
-      <span class="en">This section summarizes concepts commonly highlighted in public market-authority guidance; it is not a complete legal opinion. Consult official sources for the current authoritative text.</span>
+      <span class="es">La Comisión de Comercio de Futuros de Productos Básicos de los Estados Unidos (CFTC) emite el presente comunicado al cliente para informar al público sobre los posibles riesgos asociados con invertir o especular en los mercados al contado de moneda virtual o en mercados de futuros y opciones sobre moneda virtual.</span>
+      <span class="en">The U.S. Commodity Futures Trading Commission (CFTC) is issuing this customer advisory to inform the public of possible risks associated with investing or speculating in virtual currency spot or futures and options markets.</span>
+    </p>
+    <p>
+      <span class="es">La moneda virtual es una representación digital de valor que funciona como medio de intercambio, unidad de cuenta o reserva de valor, pero no tiene curso legal. Las monedas virtuales a veces se intercambian por dólares estadounidenses u otras monedas en todo el mundo, pero actualmente no cuentan con el respaldo ni el apoyo de ningún gobierno o banco central. Su valor se deriva por completo de las fuerzas del mercado de oferta y demanda, y son más volátiles que las monedas fiduciarias tradicionales. Las ganancias y pérdidas relacionadas con esta volatilidad se amplifican en los contratos de futuros con margen.</span>
+      <span class="en">Virtual currency is a digital representation of value that functions as a medium of exchange, a unit of account, or a store of value, but it does not have legal tender status. Virtual currencies are sometimes exchanged for U.S. dollars or other currencies around the world, but they are not currently backed nor supported by any government or central bank. Their value is completely derived by market forces of supply and demand, and they are more volatile than traditional fiat currencies. Profits and losses related to this volatility are amplified in margined futures contracts.</span>
+    </p>
+    <p>
+      <span class="es"><strong>Bitcoin es un producto básico (commodity).</strong> Bitcoin y otras monedas virtuales han sido clasificadas como productos básicos al amparo de la Commodity Exchange Act (CEA). La Comisión regula principalmente los contratos derivados sobre productos básicos basados en productos subyacentes. Aunque su autoridad de supervisión regulatoria sobre los mercados al contado de productos básicos es limitada, la CFTC mantiene autoridad general de aplicación contra el fraude y la manipulación sobre los mercados al contado de moneda virtual en tanto producto básico en el comercio interestatal.</span>
+      <span class="en"><strong>Bitcoin is a Commodity.</strong> Bitcoin and other virtual currencies have been determined to be commodities under the Commodity Exchange Act (CEA). The Commission primarily regulates commodity derivatives contracts that are based on underlying commodities. While its regulatory oversight authority over commodity cash markets is limited, the CFTC maintains general anti-fraud and manipulation enforcement authority over virtual currency cash markets as a commodity in interstate commerce.</span>
+    </p>
+    <p>
+      <span class="es">Para quienes cubren riesgos (quienes poseen bitcoin u otras monedas virtuales y buscan protegerse contra pérdidas potenciales o buscan comprar moneda virtual en algún momento en el futuro), los contratos de futuros y las opciones están destinados a proporcionar protección contra esta volatilidad. Sin embargo, como todos los productos de futuros, especular en estos mercados debe considerarse una operación de alto riesgo.</span>
+      <span class="en">For hedgers – those who own bitcoin or other virtual currencies and who are looking to protect themselves against potential losses or looking to buy virtual currency at some point in the future – futures contracts and options are intended to provide protection against this volatility. However, like all futures products, speculating in these markets should be considered a high-risk transaction.</span>
+    </p>
+    <p>
+      <span class="es"><strong>¿Qué hace riesgosa la moneda virtual?</strong> Comprar monedas virtuales en el mercado al contado – gastar dólares para comprar Bitcoin para su billetera personal, por ejemplo – conlleva una serie de riesgos, entre ellos:</span>
+      <span class="en"><strong>What makes virtual currency risky?</strong> Purchasing virtual currencies on the cash market – spending dollars to purchase Bitcoin for your personal wallet, for example – comes with a number of risks, including:</span>
+    </p>
+    <ul class="legal-list">
+      <li><span class="es">La mayoría de los mercados al contado no están regulados ni supervisados por una agencia gubernamental;</span><span class="en">Most cash markets are not regulated or supervised by a government agency;</span></li>
+      <li><span class="es">Las plataformas en el mercado al contado pueden carecer de salvaguardas críticas del sistema, incluidas las protecciones al cliente;</span><span class="en">Platforms in the cash market may lack critical system safeguards, including customer protections;</span></li>
+      <li><span class="es">Movimientos bruscos de precios en el mercado al contado o caídas repentinas (flash crashes);</span><span class="en">Volatile cash market price swings or flash crashes;</span></li>
+      <li><span class="es">Manipulación del mercado al contado;</span><span class="en">Cash market manipulation;</span></li>
+      <li><span class="es">Riesgos cibernéticos, como intentos de piratería o phishing; y/o</span><span class="en">Cyber risks, such as hacking or phishing attempts; and/or</span></li>
+      <li><span class="es">Plataformas que venden desde sus propias cuentas y ponen a los clientes en desventaja injusta.</span><span class="en">Platforms selling from their own accounts and putting customers at an unfair disadvantage.</span></li>
+    </ul>
+    <p>
+      <span class="es">También es importante tener en cuenta que los cambios en el mercado que afectan el precio al contado de una moneda virtual pueden afectar en última instancia el precio de los futuros y opciones sobre moneda virtual.</span>
+      <span class="en">It's also important to note that market changes that affect the cash market price of a virtual currency may ultimately affect the price of virtual currency futures and options.</span>
+    </p>
+    <p>
+      <span class="es">Cuando los clientes compran un contrato de futuros basado en moneda virtual, es posible que no tengan derecho a recibir la moneda virtual real, según el contrato en particular. En la mayoría de los contratos de futuros que se ofrecen actualmente, los clientes compran el derecho a recibir o pagar el importe del valor de un producto básico subyacente en dólares en algún momento en el futuro. Dichos contratos de futuros se denominan «liquidados en efectivo». Los clientes pagarán o recibirán (según el lado del contrato que hayan tomado – largo o corto) el equivalente en dólares de la moneda virtual según un índice o precio de subasta especificado en el contrato. Por tanto, los clientes deben informarse sobre cómo se determinan los índices o precios de subasta utilizados para liquidar el contrato.</span>
+      <span class="en">When customers purchase a virtual currency-based futures contract, they may not be entitled to receive the actual virtual currency, depending on the particular contract. Under most futures contracts currently being offered, customers are buying the right to receive or pay the amount of an underlying commodity value in dollars at some point in the future. Such futures contracts are said to be &quot;cash settled.&quot; Customers will pay or receive (depending on which side of the contract they have taken – long or short) the dollar equivalent of the virtual currency based on an index or auction price specified in the contract. Thus, customers should inform themselves as to how the index or auction prices used to settle the contract are determined.</span>
+    </p>
+    <p>
+      <span class="es">Celebrar contratos de futuros a través de cuentas apalancadas puede amplificar los riesgos de operar con el producto. Por lo general, los participantes solo financian los contratos de futuros en una fracción del precio del producto básico subyacente cuando utilizan una cuenta de margen. Esto crea «apalancamiento», y el apalancamiento amplifica el riesgo subyacente, haciendo que un cambio en el precio al contado sea aún más significativo. Cuando los precios se mueven a favor de las posiciones de los clientes, el apalancamiento les proporciona más beneficio por una inversión relativamente pequeña. Pero, cuando los mercados van en contra de las posiciones de los clientes, se verán obligados a rellenar sus cuentas de margen o a cerrar sus posiciones y, al final, pueden perder más que sus inversiones iniciales.</span>
+      <span class="en">Entering into futures contracts through leveraged accounts can amplify the risks of trading the product. Typically, participants only fund futures contracts at a fraction of the underlying commodity price when using a margin account. This creates &quot;leverage,&quot; and leverage amplifies the underlying risk, making a change in the cash price even more significant. When prices move in the customers&apos; favor, leverage provides them with more profit for a relatively small investment. But, when markets go against customers&apos; positions, they will be forced to refill their margin accounts or close out their positions, and in the end may lose more than their initial investments.</span>
+    </p>
+    <p>
+      <span class="es"><strong>Tenga cuidado con el fraude relacionado.</strong> Las monedas virtuales son comúnmente objetivo de piratas informáticos y delincuentes que cometen fraude. No existe la seguridad de que pueda obtener reparación si le roban su moneda virtual. Tenga cuidado con cómo y dónde almacena su moneda virtual. La CFTC ha recibido quejas sobre estafas de intercambio de moneda virtual, así como esquemas Ponzi y piramidales.</span>
+      <span class="en"><strong>Beware of related fraud.</strong> Virtual currencies are commonly targeted by hackers and criminals who commit fraud. There is no assurance of recourse if your virtual currency is stolen. Be careful how and where you store your virtual currency. The CFTC has received complaints about virtual currency exchange scams, as well as Ponzi and &quot;pyramid&quot; schemes.</span>
+    </p>
+    <p>
+      <span class="es">Si decide comprar monedas virtuales o derivados basados en ellas, recuerde estos consejos:</span>
+      <span class="en">If you decide to buy virtual currencies or derivatives based on them, remember these tips:</span>
+    </p>
+    <ul class="legal-list">
+      <li><span class="es">Si alguien intenta venderle una inversión en opciones o futuros sobre monedas virtuales, incluido Bitcoin, verifique que estén <a href="https://www.cftc.gov/ConsumerProtection/check/index.html" target="_blank" rel="noopener noreferrer">registrados ante la CFTC</a>.</span><span class="en">If someone tries to sell you an investment in options or futures on virtual currencies, including Bitcoin, verify they are <a href="https://www.cftc.gov/ConsumerProtection/check/index.html" target="_blank" rel="noopener noreferrer">registered with the CFTC</a>.</span></li>
+      <li><span class="es">Recuerde: gran parte del mercado al contado de moneda virtual opera a través de plataformas de negociación basadas en Internet que pueden no estar reguladas ni supervisadas.</span><span class="en">Remember—much of the virtual currency cash market operates through Internet-based trading platforms that may be unregulated and unsupervised.</span></li>
+      <li><span class="es">No invierta en productos o estrategias que no entienda.</span><span class="en">Do not invest in products or strategies you do not understand.</span></li>
+      <li><span class="es">Asegúrese de comprender los riesgos y cómo el producto puede perder dinero, así como la probabilidad de pérdida. Solo especule con dinero que pueda permitirse perder.</span><span class="en">Be sure you understand the risks and how the product can lose money, as well as the likelihood of loss. Only speculate with money you can afford to lose.</span></li>
+      <li><span class="es">No existe tal cosa como una inversión o estrategia de negociación garantizada. Si alguien le dice que no hay riesgo de perder dinero, no invierta.</span><span class="en">There is no such thing as a guaranteed investment or trading strategy. If someone tells you there is no risk of losing money, do not invest.</span></li>
+      <li><span class="es">Los inversores deben investigar extensamente la legitimidad de las plataformas de moneda virtual y las billeteras digitales antes de proporcionar información de tarjeta de crédito, transferir dinero por cable u ofrecer información personal sensible.</span><span class="en">Investors should conduct extensive research into the legitimacy of virtual currency platforms and digital wallets before providing credit card information, wiring money, or offering sensitive personal information.</span></li>
+      <li><span class="es">La SEC también ha advertido que algunas ventas de tokens u ofertas iniciales de monedas (ICO) pueden usarse para atraer indebidamente a los inversores con promesas de altos rendimientos.<sup>1</sup></span><span class="en">The SEC has also warned that some token sales or initial coin offerings (ICOs) can be used to improperly entice investors with promises of high returns.<sup>1</sup></span></li>
+    </ul>
+    <p>
+      <span class="es"><sup>1</sup> Véase </span>
+      <span class="en"><sup>1</sup> See </span>
+      <a href="https://www.sec.gov/oiea/investor-alerts-and-bulletins/ib_coinofferings" target="_blank" rel="noopener noreferrer">https://www.sec.gov/oiea/investor-alerts-and-bulletins/ib_coinofferings</a><span class="es">.</span><span class="en">.</span>
+    </p>
+    <p>
+      <span class="es">Si cree que puede haber sido víctima de fraude, o para denunciar actividad sospechosa, comuníquese al 866.366.2382 o visite </span>
+      <span class="en">If you believe you may have been the victim of fraud, or to report suspicious activity, contact us at 866.366.2382 or visit </span>
+      <a href="https://www.cftc.gov/complaint" target="_blank" rel="noopener noreferrer">CFTC.gov/Complaint</a><span class="es">.</span><span class="en">.</span>
+    </p>
+    <p>
+      <span class="es">La CFTC ha proporcionado esta información como un servicio a los inversores. No constituye una interpretación legal ni una declaración de política de la CFTC. Si tiene preguntas sobre el significado o la aplicación de una ley o regla en particular, consulte a un abogado.</span>
+      <span class="en">The CFTC has provided this information as a service to investors. It is neither a legal interpretation nor a statement of CFTC policy. If you have questions concerning the meaning or application of a particular law or rule, consult an attorney.</span>
     </p>
   </section>
 

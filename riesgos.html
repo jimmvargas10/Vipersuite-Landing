@@ -1,0 +1,921 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viper Suite — Risk Disclosure / Declaración de Riesgo</title>
+<link rel="icon" type="image/webp" href="/logovipersuite.webp">
+<link rel="shortcut icon" type="image/webp" href="/logovipersuite.webp">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #00ffff;
+  --cyan-dim: #00cccc;
+  --cyan-dark: #003333;
+  --bg: #080c0c;
+  --bg2: #0d1414;
+  --bg3: #111b1b;
+  --text: #eaeaea;
+  --text-dim: #888;
+  --green: #00ff88;
+  --red: #ff4444;
+  --amber: #ffaa00;
+  --border: rgba(0,255,255,0.15);
+  --border-bright: rgba(0,255,255,0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* LANG TOGGLE */
+.lang-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 32px;
+  background: rgba(8,12,12,0.95);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0,255,255,0.5));
+}
+
+.nav-logo-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-download-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: transparent;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.btn-download-nav:hover {
+  background: rgba(0,255,255,0.08);
+  transform: translateY(-1px);
+}
+
+.lang-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.lang-btn {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Inter', sans-serif;
+}
+
+.lang-btn.active {
+  background: var(--cyan-dark);
+  color: var(--cyan);
+  border: 1px solid var(--border-bright);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 32px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0,255,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,255,136,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.grid-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--border-bright);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cyan);
+  background: rgba(0,255,255,0.05);
+  margin-bottom: 28px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--cyan) 0%, #ffffff 50%, var(--cyan-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(12px, 2vw, 18px);
+  font-weight: 400;
+  color: var(--cyan-dim);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.hero-desc {
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300;
+  color: var(--text-dim);
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.hero-desc strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary:hover {
+  background: #00e5e5;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--cyan);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  border: 1px solid var(--border-bright);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-secondary:hover {
+  background: rgba(0,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+.trial-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.trial-note span {
+  color: var(--green);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 0;
+}
+
+.stat-item {
+  padding: 28px 48px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  flex: 1;
+  min-width: 160px;
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--cyan);
+  display: block;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* FEATURES */
+.section {
+  padding: 60px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.feature-card {
+  background: var(--bg2);
+  padding: 36px 32px;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.feature-card:hover {
+  background: var(--bg3);
+}
+
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  background: rgba(0,255,255,0.08);
+  border: 1px solid var(--border);
+}
+
+.feature-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.feature-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.badge-new {
+  background: rgba(0,255,136,0.1);
+  color: var(--green);
+  border: 1px solid rgba(0,255,136,0.3);
+}
+
+.badge-beta {
+  background: rgba(255,170,0,0.1);
+  color: var(--amber);
+  border: 1px solid rgba(255,170,0,0.3);
+}
+
+/* PRICING */
+.pricing-section {
+  padding: 100px 32px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 60px;
+}
+
+.price-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 28px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.price-card:hover {
+  border-color: var(--border-bright);
+}
+
+.price-card.featured {
+  border-color: var(--cyan);
+  background: linear-gradient(135deg, var(--bg3) 0%, rgba(0,255,255,0.03) 100%);
+}
+
+.price-card.featured::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cyan);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.price-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.price-amount {
+  font-family: 'Orbitron', monospace;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-amount span {
+  font-size: 18px;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.price-period {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+
+.price-features li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-features li::before {
+  content: 'âœ“';
+  color: var(--green);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.price-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.price-btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--border-bright);
+}
+
+.price-btn-outline:hover {
+  background: rgba(0,255,255,0.05);
+}
+
+.price-btn-solid {
+  background: var(--cyan);
+  color: #000;
+  border: none;
+  font-weight: 700;
+}
+
+.price-btn-solid:hover {
+  background: #00e5e5;
+}
+
+/* DISCLAIMER */
+.disclaimer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.disclaimer p {
+  font-size: 12px;
+  color: var(--text-dim);
+  max-width: 700px;
+  margin: 0 auto 8px;
+  line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+  padding: 40px 32px;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.footer-logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--cyan); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-legal {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.footer-legal p {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.footer-legal p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-legal a {
+  color: var(--cyan);
+  text-decoration: underline;
+}
+
+.footer-legal a:hover {
+  color: var(--cyan-dim);
+}
+
+/* NINJATRADER / KINETICK ECOSYSTEM */
+.ecosystem-section {
+  padding: 60px 32px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+
+.ecosystem-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.ecosystem-block {
+  margin-bottom: 48px;
+}
+
+.ecosystem-block:last-child {
+  margin-bottom: 0;
+}
+
+.ecosystem-block h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+
+.ecosystem-logo-wrap {
+  padding: 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-width: fit-content;
+}
+
+.ecosystem-logo-wrap img {
+  display: block;
+  max-width: min(100%, 320px);
+  height: auto;
+}
+
+.ecosystem-body {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+
+.ecosystem-body a {
+  color: var(--cyan);
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.ecosystem-body a:hover {
+  color: var(--cyan-dim);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero > * {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.hero > *:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+.hero > *:nth-child(2) { animation-delay: 0.2s; opacity: 0; }
+.hero > *:nth-child(3) { animation-delay: 0.3s; opacity: 0; }
+.hero > *:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
+.hero > *:nth-child(5) { animation-delay: 0.5s; opacity: 0; }
+.hero > *:nth-child(6) { animation-delay: 0.6s; opacity: 0; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .stat-item { padding: 20px 24px; }
+  .section { padding: 60px 20px; }
+  footer { text-align: center; }
+  .footer-row { flex-direction: column; justify-content: center; align-items: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .legal-page-wrap { padding-left: 20px; padding-right: 20px; }
+}
+
+/* HIDDEN LANG */
+.lang-es .en { display: none; }
+.lang-en .es { display: none; }
+
+/* LEGAL PAGE */
+.legal-page-wrap {
+  padding: 88px 32px 48px;
+  max-width: 880px;
+  margin: 0 auto;
+  min-height: 55vh;
+}
+.legal-page-wrap h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 36px;
+  line-height: 1.25;
+}
+.legal-block {
+  margin-bottom: 40px;
+}
+.legal-block:last-child { margin-bottom: 0; }
+.legal-block h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cyan);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+}
+.legal-block p {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.legal-block p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body class="lang-en">
+
+<div class="lang-bar">
+  <a href="/index.html" class="nav-logo">
+    <img src="/logovipersuite.webp" alt="Viper Suite">
+    <span class="nav-logo-text">VIPER SUITE</span>
+  </a>
+  <div class="nav-right">
+    <a href="/downloads/ViperSuite.zip" class="btn-download-nav">
+      <span class="es">⬇ Prueba Gratis 15 días</span>
+      <span class="en">⬇ Free Trial 15 days</span>
+    </a>
+    <div class="lang-toggle">
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</div>
+
+<main class="legal-page-wrap">
+  <h1>
+    <span class="es">Declaraciones legales y de riesgo</span>
+    <span class="en">Legal and risk disclosures</span>
+  </h1>
+
+  <section class="legal-block" aria-labelledby="ld-risk">
+    <h2 id="ld-risk">
+      <span class="es">Declaración de riesgo</span>
+      <span class="en">Risk disclosure</span>
+    </h2>
+    <p>
+      <span class="es">El trading de futuros, forex y otros instrumentos financieros implica un riesgo sustancial de pérdida y no es adecuado para todos los inversores. El apalancamiento puede actuar en su contra y a su favor. Antes de operar debe considerar cuidadosamente sus objetivos, nivel de experiencia y tolerancia al riesgo. Podría perder parte o la totalidad de su inversión inicial; no deposite fondos que no pueda permitirse perder. Debe informarse sobre los riesgos asociados al trading y, si tiene dudas, buscar asesoramiento de un asesor financiero, fiscal o legal independiente.</span>
+      <span class="en">Trading futures, forex, and other financial instruments involves substantial risk of loss and is not suitable for all investors. Leverage can work for you and against you. Before trading, you should carefully consider your objectives, level of experience, and risk appetite. You could lose some or all of your initial investment; do not deposit funds you cannot afford to lose. You should be aware of the risks associated with trading and, if in doubt, seek advice from an independent financial, tax, or legal advisor.</span>
+    </p>
+    <p>
+      <span class="es">El rendimiento pasado, ya sea real o simulado, no garantiza resultados futuros. Las condiciones de mercado cambian y ningún sistema o metodología puede asegurar beneficios o evitar pérdidas.</span>
+      <span class="en">Past performance, whether actual or simulated, does not guarantee future results. Market conditions change, and no system or methodology can ensure profits or prevent losses.</span>
+    </p>
+  </section>
+
+  <section class="legal-block" aria-labelledby="ld-hyp">
+    <h2 id="ld-hyp">
+      <span class="es">Declaración de resultados hipotéticos</span>
+      <span class="en">Hypothetical performance results disclosure</span>
+    </h2>
+    <p>
+      <span class="es">Los resultados hipotéticos o simulados tienen limitaciones inherentes. A diferencia de un registro de rendimiento real, los resultados simulados no representan operaciones reales y pueden no haber sido afectados por factores de mercado, liquidez u otros materiales. Los programas de modelado suelen usar datos retrospectivos y, por tanto, se benefician de la visión en retrospectiva. No se pretende que cualquier cuenta vaya a obtener ganancias o pérdidas similares a las mostradas.</span>
+      <span class="en">Hypothetical or simulated performance results have inherent limitations. Unlike an actual performance record, simulated results do not represent actual trading and may not have been impacted by market factors, liquidity, and other material considerations. Modeling programs often use hindsight and therefore benefit from hindsight bias. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown.</span>
+    </p>
+    <p>
+      <span class="es">Las pruebas retrospectivas (backtesting) no sustituyen la experiencia en mercados reales. Los costos de transacción, deslizamiento (slippage) y diferencias en la ejecución pueden afectar materialmente los resultados.</span>
+      <span class="en">Backtesting is not a substitute for experience in live markets. Transaction costs, slippage, and execution differences can materially affect outcomes.</span>
+    </p>
+  </section>
+
+  <section class="legal-block" aria-labelledby="ld-test">
+    <h2 id="ld-test">
+      <span class="es">Declaración de testimonios</span>
+      <span class="en">Testimonials disclosure</span>
+    </h2>
+    <p>
+      <span class="es">Los testimonios, opiniones o experiencias descritas en este sitio pueden no ser representativos de la experiencia de otros usuarios y no constituyen una promesa o garantía de rendimiento. Cada usuario tiene circunstancias, habilidades y tolerancia al riesgo distintas. Los testimonios pueden basarse en resultados que no son típicos.</span>
+      <span class="en">Testimonials, opinions, or experiences described on this site may not be representative of other users&apos; experiences and do not constitute a promise or guarantee of performance. Each user has different circumstances, skills, and risk tolerance. Testimonials may be based on results that are not typical.</span>
+    </p>
+  </section>
+
+  <section class="legal-block" aria-labelledby="ld-cftc">
+    <h2 id="ld-cftc">
+      <span class="es">Declaración sobre monedas virtuales (orientación de estilo CFTC)</span>
+      <span class="en">Virtual currency disclosure (CFTC-style advisory summary)</span>
+    </h2>
+    <p>
+      <span class="es">Las monedas virtuales y los mercados relacionados pueden implicar riesgos elevados, incluida volatilidad extrema de precios, falta de protecciones regulatorias comparables con los mercados tradicionales, posibles pérdidas por fraude o fallos operativos, y complejidad tecnológica (por ejemplo, custodia de claves). Antes de participar, debe comprender plenamente estos riesgos y considerar si dichos productos son adecuados para usted.</span>
+      <span class="en">Virtual currencies and related markets can involve elevated risks, including extreme price volatility, fewer regulatory protections than traditional markets, potential losses from fraud or operational failures, and technological complexity (for example, key custody). Before participating, you should fully understand these risks and consider whether such products are appropriate for you.</span>
+    </p>
+    <p>
+      <span class="es">Esta sección resume conceptos frecuentemente destacados en orientación pública de las autoridades de mercados; no constituye asesoramiento legal completo. Consulte las fuentes oficiales para el texto vigente.</span>
+      <span class="en">This section summarizes concepts commonly highlighted in public market-authority guidance; it is not a complete legal opinion. Consult official sources for the current authoritative text.</span>
+    </p>
+  </section>
+
+  <section class="legal-block" aria-labelledby="ld-nt">
+    <h2 id="ld-nt">
+      <span class="es">Texto legal sobre NinjaTrader®</span>
+      <span class="en">NinjaTrader® legal notice</span>
+    </h2>
+    <p>
+      <span class="es">NinjaTrader® es una marca registrada de NinjaTrader Group, LLC. Ninguna empresa de NinjaTrader tiene afiliación con el propietario, desarrollador o proveedor de los productos o servicios aquí descritos (incluido Viper Suite), ni interés, titularidad o relación de ningún tipo con dicho producto o servicio, ni respalda, recomienda ni aprueba ningún producto o servicio de ese tipo.</span>
+      <span class="en">NinjaTrader® is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein (including Viper Suite), or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</span>
+    </p>
+    <p>
+      <span class="es">Viper Suite es un complemento (AddOn) de terceros independiente y no está afiliado con NinjaTrader LLC. Las referencias a NinjaTrader® o a la plataforma NinjaTrader se hacen únicamente para identificar el entorno de software compatible.</span>
+      <span class="en">Viper Suite is an independent third-party AddOn and is not affiliated with NinjaTrader LLC. References to NinjaTrader® or the NinjaTrader platform are made solely to identify the compatible software environment.</span>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-row">
+    <div class="footer-logo">VIPER SUITE</div>
+    <div class="footer-links">
+      <a href="/index.html#features" class="es">Funcionalidades</a>
+      <a href="/index.html#features" class="en">Features</a>
+      <a href="/index.html#pricing" class="es">Precios</a>
+      <a href="/index.html#pricing" class="en">Pricing</a>
+      <a href="/riesgos.html" class="es">Declaración de Riesgo</a>
+      <a href="/riesgos.html" class="en">Risk Disclosure</a>
+      <a href="mailto:support@vipersuite.com">Support</a>
+    </div>
+    <p class="footer-copy">© 2026 Viper Suite · vipersuite.com</p>
+  </div>
+  <div class="footer-legal">
+    <p>
+      <span class="es">NinjaTrader® es una marca registrada de NinjaTrader Group, LLC. Ninguna empresa de NinjaTrader tiene afiliación con el propietario, desarrollador o proveedor de los productos o servicios aquí descritos, ni interés, titularidad o relación de ningún tipo con dicho producto o servicio, ni respalda, recomienda ni aprueba ningún producto o servicio de ese tipo.</span>
+      <span class="en">NinjaTrader® is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein, or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</span>
+    </p>
+    <p>
+      <span class="es">El trading de futuros y forex conlleva un riesgo sustancial y no es adecuado para todo inversor. Un inversor podría perder todo o más que la inversión inicial. El capital de riesgo es dinero que puede perderse sin poner en peligro la seguridad financiera o el estilo de vida. Solo debe usarse capital de riesgo para operar y solo quienes dispongan de capital de riesgo suficiente deberían plantearse operar. El rendimiento pasado no es necesariamente indicativo de resultados futuros.</span>
+      <span class="en">Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one&apos;s financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>
